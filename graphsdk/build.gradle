@@ -26,6 +26,7 @@ android {
         targetSdkVersion 23
         versionCode this.getVersionCode()
         versionName this.getVersionName()
+        multiDexEnabled true
     }
 
     lintOptions {
