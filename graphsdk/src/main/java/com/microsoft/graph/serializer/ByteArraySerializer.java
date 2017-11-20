@@ -22,7 +22,7 @@
 
 package com.microsoft.graph.serializer;
 
-import android.util.Base64;
+import java.util.Base64;
 
 import java.text.ParseException;
 
@@ -44,7 +44,7 @@ public final class ByteArraySerializer {
      * @throws ParseException If there is any problem processing the value
      */
     public static byte[] deserialize(final String strVal) throws ParseException {
-        return Base64.decode(strVal, Base64.NO_WRAP);
+        return Base64.getDecoder().decode(strVal);
     }
 
     /**
@@ -54,6 +54,6 @@ public final class ByteArraySerializer {
      * @return The string.
      */
     public static String serialize(final byte[] src) {
-        return Base64.encodeToString(src, Base64.NO_WRAP);
+        return Base64.getEncoder().encodeToString(src);
     }
 }

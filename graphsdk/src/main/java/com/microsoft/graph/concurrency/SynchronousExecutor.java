@@ -22,10 +22,9 @@
 
 package com.microsoft.graph.concurrency;
 
-import android.os.Handler;
-import android.os.Looper;
-
 import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -43,8 +42,8 @@ public class SynchronousExecutor implements Executor {
      * @param runnable The task to run on the main thread.
      */
     @Override public void execute(final Runnable runnable) {
-        final Handler handler = new Handler(Looper.getMainLooper());
-        handler.post(new Runnable() {
+        final ExecutorService service = Executors.newSingleThreadExecutor();
+        service.execute(new Runnable() {
             @Override
             public void run() {
                 mActiveCount.incrementAndGet();
